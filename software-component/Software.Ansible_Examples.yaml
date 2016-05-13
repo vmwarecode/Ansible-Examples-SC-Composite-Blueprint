@@ -1,0 +1,97 @@
+'@type': "SoftwareComponentType"
+createdDate: "2016-05-11T22:49:21.751Z"
+lastUpdated: "2016-05-12T17:48:35.417Z"
+id: "Software.Ansible_Examples"
+name: "Ansible_Examples"
+publishStatus: "PUBLISHED"
+publishStatusName: "Published"
+schema:
+  fields:
+  - id: "Playbook"
+    label: "Playbook"
+    description: ""
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: false
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: ""
+    isMultiValued: false
+  - id: "Git_URL"
+    label: "Git_URL"
+    description: ""
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: false
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "https://github.com/vmtocloud/ansible-examples.git"
+    isMultiValued: false
+  - id: "host"
+    label: "Container"
+    description: ""
+    dataType:
+      type: "ref"
+      componentTypeId: "com.vmware.csp.iaas.blueprint.service"
+      classId: "Infrastructure.Machine.Schema"
+      label: "Machine"
+    state:
+      dependencies: []
+      facets:
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+      - type: "visible"
+        value:
+          type: "constantClause"
+          value:
+            type: "boolean"
+            value: false
+      - type: "internal"
+        value:
+          type: "constantClause"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+containerFieldId: "host"
+lifecycleTasks:
+- createdDate: "2016-05-11T22:49:21.753Z"
+  lastUpdated: "2016-05-12T17:50:06.240Z"
+  script:
+    scriptContent: "export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/root/bin\n\
+      yum -y install epel-release\nyum -y install ansible git\ncd /tmp\necho \"localhost\
+      \ ansible_connection=local\" >> /etc/ansible/hosts\ngit clone $Git_URL\ncd ansible-examples/$Playbook/\n\
+      ansible-playbook site.yml"
+    isRebootAfter: false
+    scriptTypeId: "Bash"
+  taskDescriptorRef:
+    id: "INSTALL"
+    label: "Install"

@@ -1,0 +1,11 @@
+name: "auto-generated-pkg-fbc58229-9175-4ae1-ab58-9d6216113172"
+productVersion: "7.0.1-SNAPSHOT"
+data:
+- locator: "composite-blueprint/Ansible_Examples_SC.yaml"
+  name: "Ansible_Examples_SC"
+  description: "Ansible_Examples_SC"
+  dependencies:
+  - "software-component/Software.Ansible_Examples.yaml"
+- locator: "software-component/Software.Ansible_Examples.yaml"
+  name: "Ansible_Examples"
+exportTime: "2016-05-13T22:04:20.938Z"
